@@ -1,38 +1,125 @@
 package dev.rhyme.pacmanjavafx
 
+import dev.rhyme.pacmanjavafx.Movable.Companion.inGrid
+import javafx.scene.canvas.Canvas
 import javafx.scene.canvas.GraphicsContext
-import kotlinx.coroutines.runBlocking
 
 class GameMap(
-    private val tileSize: Int,
-) {
+    context: GameContext
+) : GameElement(context) {
 
-    val map = arrayOf(
-        intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 1, 1, 1, 1, 1, 1, 0, 1),
-        intArrayOf(1, 0, 1, 0, 0, 0, 0, 1, 0, 1),
-        intArrayOf(1, 0, 1, 0, 1, 1, 0, 1, 0, 1),
-        intArrayOf(1, 0, 1, 0, 1, 1, 0, 1, 0, 1),
-        intArrayOf(1, 0, 1, 0, 0, 0, 0, 1, 0, 1),
-        intArrayOf(1, 0, 1, 1, 1, 1, 1, 1, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+    private val tileSize = context.tileSize
+
+    companion object {
+        private const val PACMAN = 2
+        private const val WALL = 1
+        private const val FOOD = 0
+    }
+
+    // Create map outline, just an empty square, with empty path between
+    // 2 is pacman
+    // 1 is a wall
+    // 0 is a path
+    private val map = arrayOf(
+        intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+        intArrayOf(1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
 
-    fun draw(context: GraphicsContext) {
-        runBlocking {  }
+    override fun GraphicsContext.draw() {
         for (y in map.indices) {
             for (x in map[y].indices) {
                 when (map[y][x]) {
-                    1 -> context.fillRect(
-                        x * tileSize.toDouble(),
-                        y * tileSize.toDouble(),
-                        tileSize.toDouble(),
-                        tileSize.toDouble()
-                    )
+                    WALL -> drawWall(x, y)
+                    FOOD -> drawFood(x, y)
+                }
+
+
+                // draw grid
+                stroke = javafx.scene.paint.Color.GRAY
+                strokeRect(
+                    x * tileSize,
+                    y * tileSize,
+                    tileSize,
+                    tileSize
+                )
+            }
+        }
+    }
+
+    fun getPacmanInitialPosition(): Position {
+        for (y in map.indices) {
+            for (x in map[y].indices) {
+                if (map[y][x] == PACMAN) {
+                    return Position(x * context.tileSize, y * context.tileSize)
                 }
             }
         }
+        error("Pacman not found")
+    }
+
+    fun willCollide(movable: Movable): Boolean {
+        val position = movable.position
+
+        // If not in grid, it will not collide
+        if (!movable.inGrid(tileSize)) {
+            return false
+        }
+
+        val targetDirection = movable.targetDirection ?: return false
+
+        val currentMapCellX = (position.x / tileSize).toInt()
+        val currentMapCellY = (position.y / tileSize).toInt()
+
+        // Check if will collide based on target direction
+        val targetCell =  when (targetDirection) {
+            Direction.UP -> map[currentMapCellY - 1][currentMapCellX]
+            Direction.DOWN -> map[currentMapCellY + 1][currentMapCellX]
+            Direction.LEFT -> map[currentMapCellY][currentMapCellX - 1]
+            Direction.RIGHT -> map[currentMapCellY][currentMapCellX + 1]
+        }
+
+        return targetCell == WALL
+    }
+
+    private fun GraphicsContext.drawWall(x: Int, y: Int) {
+        fill = javafx.scene.paint.Color.BLACK
+        fillRect(
+            x * tileSize,
+            y * tileSize,
+            tileSize,
+            tileSize
+        )
+    }
+
+    private fun GraphicsContext.drawFood(x: Int, y: Int) {
+
+        val scale = 0.5
+        val offset = tileSize * (1 - scale) / 2
+        // draw circle 80% of tile size and color yellow
+        fill = javafx.scene.paint.Color.YELLOW
+        fillOval(
+            x * tileSize + offset,
+            y * tileSize + offset,
+            tileSize * scale,
+            tileSize * scale
+        )
+    }
+
+    fun resizeCanvas(canvas: Canvas) {
+        canvas.width = map[0].size * tileSize
+        canvas.height = map.size * tileSize
     }
 }

@@ -1,18 +1,33 @@
 package dev.rhyme.pacmanjavafx
 
-import javafx.scene.canvas.GraphicsContext
+import javafx.event.EventHandler
+import javafx.scene.input.KeyEvent
 
 class Game(
-    private val context: GraphicsContext
+    context: GameContext,
 ) {
-    companion object {
-        const val tileSize = 32
-    }
 
-    val gameMap = GameMap(tileSize)
+    private val gameMap = GameMap(context = context)
 
+    private val pacman = Pacman(
+        position = gameMap.getPacmanInitialPosition(),
+        context = context,
+        gameMap = gameMap
+    )
+
+    private val gameElements = listOf(
+        gameMap,
+        pacman
+    )
+
+    private val drawingContext = context.drawingContext
 
     fun gameLoop() {
-      gameMap.draw(context)
+        drawingContext.clearRect(0.0, 0.0, drawingContext.canvas.width, drawingContext.canvas.height)
+        gameElements.forEach { it.update() }
+    }
+
+    fun resizeCanvas() {
+        gameMap.resizeCanvas(drawingContext.canvas)
     }
 }
