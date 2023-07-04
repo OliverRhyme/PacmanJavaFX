@@ -1,20 +1,18 @@
 package dev.rhyme.pacmanjavafx.ai
 
 import dev.rhyme.pacmanjavafx.Direction
-import kotlinx.coroutines.currentCoroutineContext
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.isActive
+import kotlinx.coroutines.flow.transform
 
 class RandomTargetDirectionProvider(
-    private val randomDelayRangeSec: IntRange = 3..10
+    ticker: Flow<Long>,
+    private val defaultTicksBeforeChange: Int = (10..25).random()
 ) : TargetDirectionProvider {
 
-    override val targetDirectionFlow: Flow<Direction> = flow {
-        while (currentCoroutineContext().isActive) {
+    override val targetDirectionFlow: Flow<Direction> = ticker.transform {
+        if (it % defaultTicksBeforeChange == 0L) {
             emit(Direction.values().random())
-            delay((randomDelayRangeSec).random() * 1000L)
         }
     }
+
 }

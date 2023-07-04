@@ -4,18 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement pacman and collision detection">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Ghost.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/MovableGameElement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/KeyPressTargetDirectionProvider.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/RandomTargetDirectionProvider.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/TargetDirectionProvider.kt" afterDir="false" />
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement ghost random AI">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameContext.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameContext.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Ghost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Ghost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Movable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Movable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/RandomTargetDirectionProvider.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/RandomTargetDirectionProvider.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -163,13 +160,25 @@
       <option name="project" value="LOCAL" />
       <updated>1688396714193</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Implement ghost random AI">
+      <option name="closed" value="true" />
+      <created>1688475526867</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1688475526867</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
     <MESSAGE value="Implement pacman and collision detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement pacman and collision detection" />
+    <MESSAGE value="Implement ghost random AI" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement ghost random AI" />
+    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
+    <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

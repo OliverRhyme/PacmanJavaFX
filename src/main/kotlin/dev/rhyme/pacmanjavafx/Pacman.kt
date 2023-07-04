@@ -7,12 +7,18 @@ import javafx.scene.canvas.GraphicsContext
 class Pacman(
     override var position: Position,
     context: GameContext,
-    gameMap: GameMap
+    private val gameMap: GameMap
 ) : MovableGameElement(context = context, gameMap = gameMap) {
 
     private val tileSize = context.tileSize
 
     override val targetDirectionProvider: TargetDirectionProvider = KeyPressTargetDirectionProvider(context)
+
+    override fun update() {
+        move()
+        gameMap.tryEatFood(position)
+        context.drawingContext.draw()
+    }
 
     override fun GraphicsContext.draw() {
         fill = javafx.scene.paint.Color.BLUE

@@ -10,5 +10,6 @@ data class GameContext(
     val defaultVelocity: Double,
     val coroutineScope: CoroutineScope,
     val drawingContext: GraphicsContext,
-    val keyEventFlow: Flow<KeyEvent>
+    val keyEventFlow: Flow<KeyEvent>,
+    val gameLoopTicker: Flow<Long> // Loop iterations
 )

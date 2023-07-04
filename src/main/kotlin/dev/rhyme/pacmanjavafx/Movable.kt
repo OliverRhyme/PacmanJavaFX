@@ -7,7 +7,11 @@ interface Movable {
 
     companion object {
         fun Movable.inGrid(tileSize: Double): Boolean {
-            val (x, y) = position
+            return position.inGrid(tileSize)
+        }
+
+        fun Position.inGrid(tileSize: Double): Boolean {
+            val (x, y) = this
             return x % tileSize == 0.0 && y % tileSize == 0.0
         }
     }

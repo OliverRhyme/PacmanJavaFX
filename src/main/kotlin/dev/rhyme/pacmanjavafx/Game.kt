@@ -1,7 +1,10 @@
 package dev.rhyme.pacmanjavafx
 
+import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.launch
+
 class Game(
-    context: GameContext,
+    private val context: GameContext,
 ) {
 
     private val gameMap = GameMap(context = context)
@@ -28,12 +31,20 @@ class Game(
 
     private val drawingContext = context.drawingContext
 
-    fun gameLoop() {
+    private fun gameLoop() {
         drawingContext.clearRect(0.0, 0.0, drawingContext.canvas.width, drawingContext.canvas.height)
         gameElements.forEach { it.update() }
     }
 
     fun resizeCanvas() {
         gameMap.resizeCanvas(drawingContext.canvas)
+    }
+
+    fun start() {
+        context.coroutineScope.launch {
+            context.gameLoopTicker.collectLatest {
+                gameLoop()
+            }
+        }
     }
 }

@@ -11,6 +11,7 @@ class GameMap(
     private val tileSize = context.tileSize
 
     companion object {
+        private const val EMPTY = 8
         private const val GHOST = 4
         private const val PACMAN = 2
         private const val WALL = 1
@@ -46,6 +47,7 @@ class GameMap(
                 when (map[y][x]) {
                     WALL -> drawWall(x, y)
                     FOOD -> drawFood(x, y)
+                    EMPTY -> drawEmpty(x, y)
                 }
 
                 // draw grid
@@ -93,11 +95,10 @@ class GameMap(
 
         val targetDirection = movable.targetDirection ?: return false
 
-        val currentMapCellX = (position.x / tileSize).toInt()
-        val currentMapCellY = (position.y / tileSize).toInt()
+        val (currentMapCellX, currentMapCellY) = position.getMapCell()
 
         // Check if will collide based on target direction
-        val targetCell =  when (targetDirection) {
+        val targetCell = when (targetDirection) {
             Direction.UP -> map[currentMapCellY - 1][currentMapCellX]
             Direction.DOWN -> map[currentMapCellY + 1][currentMapCellX]
             Direction.LEFT -> map[currentMapCellY][currentMapCellX - 1]
@@ -131,8 +132,35 @@ class GameMap(
         )
     }
 
+    private fun GraphicsContext.drawEmpty(x: Int, y: Int) {
+        fill = javafx.scene.paint.Color.WHITE
+        fillRect(
+            x * tileSize,
+            y * tileSize,
+            tileSize,
+            tileSize
+        )
+    }
+
+    fun tryEatFood(position: Position) {
+        if (!position.inGrid(tileSize)) {
+            return
+        }
+
+        val (x, y) = position.getMapCell()
+        if (map[y][x] == FOOD) {
+            map[y][x] = EMPTY
+        }
+    }
+
     fun resizeCanvas(canvas: Canvas) {
         canvas.width = map[0].size * tileSize
         canvas.height = map.size * tileSize
+    }
+
+    private fun Position.getMapCell(): Pair<Int, Int> {
+        val x = (x / tileSize).toInt()
+        val y = (y / tileSize).toInt()
+        return x to y
     }
 }

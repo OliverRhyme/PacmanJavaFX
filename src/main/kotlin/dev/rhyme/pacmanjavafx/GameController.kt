@@ -3,10 +3,10 @@ package dev.rhyme.pacmanjavafx
 import dev.rhyme.pacmanjavafx.utils.keyPressFlow
 import javafx.fxml.FXML
 import javafx.scene.canvas.Canvas
-import kotlinx.coroutines.MainScope
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.isActive
-import kotlinx.coroutines.launch
+import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.shareIn
 
 class GameController {
 
@@ -27,18 +27,19 @@ class GameController {
             defaultVelocity = velocity,
             coroutineScope = scope,
             drawingContext = gameCanvas.graphicsContext2D,
-            keyEventFlow = gameCanvas.keyPressFlow()
+            keyEventFlow = gameCanvas.keyPressFlow().shareIn(scope, SharingStarted.Lazily),
+            gameLoopTicker = flow {
+                var i = 0L
+                while (currentCoroutineContext().isActive) {
+                    emit(i++)
+                    delay(1000 / 60)
+                }
+            }.shareIn(scope, SharingStarted.Lazily, 1)
         )
 
         val game = Game(gameContext)
         game.resizeCanvas()
-
-        scope.launch {
-            while (isActive) {
-                game.gameLoop()
-                delay(1000 / 60)
-            }
-        }
+        game.start()
     }
 
 }
