@@ -28,9 +28,8 @@ class Ghost(
 
     override fun update() {
         if (gameStarted.get()) {
-            move()
+            super.update()
         }
-        context.drawingContext.draw()
     }
 
     override fun GraphicsContext.draw() {

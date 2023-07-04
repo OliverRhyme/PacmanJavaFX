@@ -15,9 +15,8 @@ class Pacman(
     override val targetDirectionProvider: TargetDirectionProvider = KeyPressTargetDirectionProvider(context)
 
     override fun update() {
-        move()
+        super.update()
         gameMap.tryEatFood(position)
-        context.drawingContext.draw()
     }
 
     override fun GraphicsContext.draw() {

@@ -41,6 +41,8 @@ class GameMap(
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
 
+    override fun update() = Unit // nothing to update
+
     override fun GraphicsContext.draw() {
         for (y in map.indices) {
             for (x in map[y].indices) {

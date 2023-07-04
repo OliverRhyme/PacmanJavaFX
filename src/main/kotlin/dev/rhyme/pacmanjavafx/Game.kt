@@ -33,7 +33,7 @@ class Game(
 
     private fun gameLoop() {
         drawingContext.clearRect(0.0, 0.0, drawingContext.canvas.width, drawingContext.canvas.height)
-        gameElements.forEach { it.update() }
+        gameElements.forEach { it.tick() }
     }
 
     fun resizeCanvas() {

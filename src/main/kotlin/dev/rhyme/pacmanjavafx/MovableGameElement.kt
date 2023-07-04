@@ -40,7 +40,6 @@ abstract class MovableGameElement(
 
     override fun update() {
         move()
-        super.update()
     }
 
     protected open fun move() {
