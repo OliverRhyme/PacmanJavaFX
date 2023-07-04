@@ -37,7 +37,9 @@ class Game(
     }
 
     fun resizeCanvas() {
-        gameMap.resizeCanvas(drawingContext.canvas)
+        val (gridX, gridY) = gameMap.getMapCells()
+        drawingContext.canvas.width = gridX * context.tileSize
+        drawingContext.canvas.height = gridY * context.tileSize
     }
 
     fun start() {

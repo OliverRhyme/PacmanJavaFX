@@ -1,7 +1,6 @@
 package dev.rhyme.pacmanjavafx
 
 import dev.rhyme.pacmanjavafx.Movable.Companion.inGrid
-import javafx.scene.canvas.Canvas
 import javafx.scene.canvas.GraphicsContext
 
 class GameMap(
@@ -40,6 +39,10 @@ class GameMap(
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
+
+    fun getMapCells(): Pair<Int, Int> {
+        return Pair(map[0].size, map.size)
+    }
 
     override fun update() = Unit // nothing to update
 
@@ -153,11 +156,6 @@ class GameMap(
         if (map[y][x] == FOOD) {
             map[y][x] = EMPTY
         }
-    }
-
-    fun resizeCanvas(canvas: Canvas) {
-        canvas.width = map[0].size * tileSize
-        canvas.height = map.size * tileSize
     }
 
     private fun Position.getMapCell(): Pair<Int, Int> {
