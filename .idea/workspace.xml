@@ -4,24 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Initial Commit">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Direction.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Drawable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameContext.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameElement.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Movable.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Position.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/utils/KeypressUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement pacman and collision detection">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Ghost.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/MovableGameElement.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/KeyPressTargetDirectionProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/RandomTargetDirectionProvider.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/ai/TargetDirectionProvider.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameContext.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameContext.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/PacmanApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/PacmanApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/module-info.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,10 +26,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Enum" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Data Class" />
         <option value="Kotlin File" />
         <option value="Kotlin Interface" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -79,6 +73,12 @@
     &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;
   }
 }</component>
+  <component name="RecentsManager">
+    <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="dev.rhyme.pacmanjavafx.ai" />
+      <recent name="dev.rhyme.pacmanjavafx" />
+    </key>
+  </component>
   <component name="RunManager" selected="Kotlin.PacmanApplicationKt">
     <configuration name="PacmanApplicationKt" type="JetRunConfigurationType" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.rhyme.pacmanjavafx.PacmanApplicationKt" />
@@ -155,12 +155,21 @@
       <option name="project" value="LOCAL" />
       <updated>1688304885793</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Implement pacman and collision detection">
+      <option name="closed" value="true" />
+      <created>1688396714193</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1688396714193</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Initial Commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Initial Commit" />
+    <MESSAGE value="Implement pacman and collision detection" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement pacman and collision detection" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

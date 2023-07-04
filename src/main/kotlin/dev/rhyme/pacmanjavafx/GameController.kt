@@ -3,11 +3,10 @@ package dev.rhyme.pacmanjavafx
 import dev.rhyme.pacmanjavafx.utils.keyPressFlow
 import javafx.fxml.FXML
 import javafx.scene.canvas.Canvas
-import javafx.scene.input.KeyEvent
-import kotlinx.coroutines.*
-import kotlinx.coroutines.flow.callbackFlow
-import kotlinx.coroutines.flow.conflate
-import kotlinx.coroutines.javafx.JavaFx
+import kotlinx.coroutines.MainScope
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.isActive
+import kotlinx.coroutines.launch
 
 class GameController {
 
@@ -25,7 +24,7 @@ class GameController {
     private fun initialize() {
         val gameContext = GameContext(
             tileSize = tileSize,
-            velocity = velocity,
+            defaultVelocity = velocity,
             coroutineScope = scope,
             drawingContext = gameCanvas.graphicsContext2D,
             keyEventFlow = gameCanvas.keyPressFlow()

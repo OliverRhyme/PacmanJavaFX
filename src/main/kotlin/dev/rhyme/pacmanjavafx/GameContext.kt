@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 data class GameContext(
     val tileSize: Double,
-    val velocity: Double,
+    val defaultVelocity: Double,
     val coroutineScope: CoroutineScope,
     val drawingContext: GraphicsContext,
     val keyEventFlow: Flow<KeyEvent>

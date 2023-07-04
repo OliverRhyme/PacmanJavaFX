@@ -1,8 +1,5 @@
 package dev.rhyme.pacmanjavafx
 
-import javafx.event.EventHandler
-import javafx.scene.input.KeyEvent
-
 class Game(
     context: GameContext,
 ) {
@@ -15,10 +12,19 @@ class Game(
         gameMap = gameMap
     )
 
-    private val gameElements = listOf(
-        gameMap,
-        pacman
-    )
+    private val ghosts = gameMap.getGhostInitialPositions().map {
+        Ghost(
+            position = it,
+            context = context,
+            gameMap = gameMap
+        )
+    }
+
+    private val gameElements = buildList {
+        add(gameMap)
+        addAll(ghosts)
+        add(pacman)
+    }
 
     private val drawingContext = context.drawingContext
 

@@ -11,18 +11,20 @@ class GameMap(
     private val tileSize = context.tileSize
 
     companion object {
+        private const val GHOST = 4
         private const val PACMAN = 2
         private const val WALL = 1
         private const val FOOD = 0
     }
 
     // Create map outline, just an empty square, with empty path between
+    // 4 is ghost
     // 2 is pacman
     // 1 is a wall
     // 0 is a path
     private val map = arrayOf(
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-        intArrayOf(1, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 2, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
@@ -46,7 +48,6 @@ class GameMap(
                     FOOD -> drawFood(x, y)
                 }
 
-
                 // draw grid
                 stroke = javafx.scene.paint.Color.GRAY
                 strokeRect(
@@ -68,6 +69,18 @@ class GameMap(
             }
         }
         error("Pacman not found")
+    }
+
+    fun getGhostInitialPositions(): List<Position> {
+        return buildList {
+            for (y in map.indices) {
+                for (x in map[y].indices) {
+                    if (map[y][x] == GHOST) {
+                        add(Position(x * context.tileSize, y * context.tileSize))
+                    }
+                }
+            }
+        }
     }
 
     fun willCollide(movable: Movable): Boolean {
