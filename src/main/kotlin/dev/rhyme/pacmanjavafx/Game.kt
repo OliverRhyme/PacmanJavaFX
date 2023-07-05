@@ -12,11 +12,6 @@ class Game(
     private val context: GameContext,
 ) {
 
-    companion object {
-        const val AFRAID_TIME = 5000L
-        const val AFRAID_ALMOST_DONE_TIME = 3000L
-    }
-
     init {
         context.coroutineScope.launch {
             context.keyEventFlow.first()
@@ -39,13 +34,14 @@ class Game(
             context = context,
             gameMap = gameMap
         )
-    }
+    }.toMutableSet()
 
-    private val gameElements = buildList {
-        add(gameMap)
-        addAll(ghosts)
-        add(pacman)
-    }
+    private val gameElements
+        get() = buildList {
+            add(gameMap)
+            addAll(ghosts)
+            add(pacman)
+        }
 
     private val drawingContext = context.drawingContext
 
@@ -56,20 +52,25 @@ class Game(
     }
 
     private fun checkState() {
-        if (!context.state.isGameOver) {
-            val gameOver = isGameOver()
-            if (gameOver) {
+        val collidedWith = checkCollidedWith()
+
+        if (collidedWith.isEmpty()) {
+            return
+        }
+
+        // if we are powered up, we can eat the ghosts
+        if (context.state.poweredUpState != GameState.PowerUpState.NORMAL) {
+            ghosts.removeAll(collidedWith)
+        } else {
+            if (collidedWith.isNotEmpty()) {
                 context.state.gameOver()
+                // TODO: show game over screen
             }
         }
     }
 
-    fun isGameOver(): Boolean {
-        if (context.state.poweredUpState != GameState.PowerUpState.NORMAL) {
-            return false
-        }
-
-        return ghosts.any { it.collidesWith(pacman) }
+    private fun checkCollidedWith(): Set<Ghost> {
+        return ghosts.filterTo(hashSetOf()) { it.collidesWith(pacman) }
     }
 
     fun resizeCanvas() {

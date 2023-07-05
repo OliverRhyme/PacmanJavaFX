@@ -36,7 +36,7 @@ class GameMap(
     // 0 is a food
     private val map = arrayOf(
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-        intArrayOf(1, 2, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 1),
+        intArrayOf(1, 2, 0, 9, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
@@ -127,13 +127,6 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawWall(x: Int, y: Int) {
-//        fill = javafx.scene.paint.Color.BLACK
-//        fillRect(
-//            x * tileSize,
-//            y * tileSize,
-//            tileSize,
-//            tileSize
-//        )
         drawImage(
             wallImage,
             x * tileSize,
