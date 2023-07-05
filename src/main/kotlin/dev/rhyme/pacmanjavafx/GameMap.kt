@@ -1,17 +1,22 @@
 package dev.rhyme.pacmanjavafx
 
 import dev.rhyme.pacmanjavafx.elements.Direction
+import dev.rhyme.pacmanjavafx.elements.FoodType
 import dev.rhyme.pacmanjavafx.elements.GameElement
 import dev.rhyme.pacmanjavafx.elements.Movable
 import dev.rhyme.pacmanjavafx.elements.Movable.Companion.inGrid
 import dev.rhyme.pacmanjavafx.state.GameContext
+import dev.rhyme.pacmanjavafx.utils.resource
 import javafx.scene.canvas.GraphicsContext
+import javafx.scene.image.Image
 
 class GameMap(
     context: GameContext
 ) : GameElement(context) {
 
     private val tileSize = context.tileSize
+
+    private val wallImage = Image(resource("wall.png"))
 
     companion object {
         private const val POWER_FOOD = 9
@@ -122,8 +127,15 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawWall(x: Int, y: Int) {
-        fill = javafx.scene.paint.Color.BLACK
-        fillRect(
+//        fill = javafx.scene.paint.Color.BLACK
+//        fillRect(
+//            x * tileSize,
+//            y * tileSize,
+//            tileSize,
+//            tileSize
+//        )
+        drawImage(
+            wallImage,
             x * tileSize,
             y * tileSize,
             tileSize,
@@ -145,7 +157,7 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawEmpty(x: Int, y: Int) {
-        fill = javafx.scene.paint.Color.WHITE
+        fill = javafx.scene.paint.Color.BLACK
         fillRect(
             x * tileSize,
             y * tileSize,
@@ -167,26 +179,30 @@ class GameMap(
         )
     }
 
-    private fun tryEat(position: Position, target: Int): Boolean {
+    /**
+     * Tries to eat food at given position.
+     * @return type of food eaten or null if no food was eaten
+     */
+    fun tryEat(position: Position): FoodType? {
         if (!position.inGrid(tileSize)) {
-            return false
+            return null
         }
 
         val (x, y) = position.getMapCell()
-        if (map[y][x] == target) {
-            map[y][x] = EMPTY
-            return true
+        return when (map[y][x]) {
+            FOOD -> {
+                map[y][x] = EMPTY
+                FoodType.NORMAL
+            }
+
+            POWER_FOOD -> {
+                map[y][x] = EMPTY
+                FoodType.POWER_UP
+            }
+
+            else -> null
         }
 
-        return false
-    }
-
-    fun tryEatFood(position: Position): Boolean {
-        return tryEat(position, FOOD)
-    }
-
-    fun tryEatPowerFood(position: Position): Boolean {
-        return tryEat(position, POWER_FOOD)
     }
 
     private fun Position.getMapCell(): Pair<Int, Int> {

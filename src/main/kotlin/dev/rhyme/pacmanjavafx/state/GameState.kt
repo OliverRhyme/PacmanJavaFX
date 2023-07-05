@@ -1,5 +1,6 @@
 package dev.rhyme.pacmanjavafx.state
 
 data class GameState(
-    val score: Int,
+    var powerUpEatenTime: Long? = null, // null means no power up is active
+    var score: Int = 0,
 )

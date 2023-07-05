@@ -6,6 +6,7 @@ import dev.rhyme.pacmanjavafx.ai.TargetDirectionProvider
 import dev.rhyme.pacmanjavafx.elements.Direction.Companion.sameAxisWith
 import dev.rhyme.pacmanjavafx.elements.Movable.Companion.inGrid
 import dev.rhyme.pacmanjavafx.state.GameContext
+import javafx.scene.canvas.GraphicsContext
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
@@ -44,6 +45,13 @@ abstract class MovableGameElement(
     override fun update() {
         move()
     }
+
+    final override fun GraphicsContext.draw() {
+        val (x, y) = position
+        draw(x, y)
+    }
+
+    abstract fun GraphicsContext.draw(x: Double, y: Double)
 
     protected open fun move() {
         if (currentDirection != targetDirection && inGrid(tileSize)) {

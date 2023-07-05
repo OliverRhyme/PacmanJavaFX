@@ -1,6 +1,7 @@
 package dev.rhyme.pacmanjavafx
 
 import dev.rhyme.pacmanjavafx.state.GameContext
+import dev.rhyme.pacmanjavafx.state.GameState
 import dev.rhyme.pacmanjavafx.utils.keyPressFlow
 import javafx.fxml.FXML
 import javafx.scene.canvas.Canvas
@@ -35,7 +36,8 @@ class GameController {
                     emit(i++)
                     delay(1000 / 60)
                 }
-            }.shareIn(scope, SharingStarted.Lazily, 1)
+            }.shareIn(scope, SharingStarted.Lazily, 1),
+            state = GameState()
         )
 
         val game = Game(gameContext)

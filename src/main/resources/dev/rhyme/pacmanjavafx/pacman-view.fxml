@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<VBox xmlns:fx="http://javafx.com/fxml/1" alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea"
+      fx:controller="dev.rhyme.pacmanjavafx.GameController">
+    <padding>
+        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
+    </padding>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="dev.rhyme.pacmanjavafx.GameController">
-  <padding>
-    <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-  </padding>
-
-  <Label fx:id="welcomeText" text="Pacman" />
-   <Canvas fx:id="gameCanvas" focusTraversable="true" height="200.0" width="200.0" />
+    <Label fx:id="welcomeText" text="Pacman"/>
+    <StackPane style="-fx-background-color: black;">
+        <Canvas fx:id="gameCanvas" focusTraversable="true" height="200.0" width="200.0"/>
+    </StackPane>
 </VBox>

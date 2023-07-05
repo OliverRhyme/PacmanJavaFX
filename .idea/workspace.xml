@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Improve resizing separation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Add image resources">
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,11 +15,11 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Kotlin Enum" />
         <option value="Kotlin Data Class" />
-        <option value="Kotlin File" />
         <option value="Kotlin Interface" />
         <option value="Kotlin Class" />
+        <option value="Kotlin Enum" />
+        <option value="Kotlin File" />
       </list>
     </option>
   </component>
@@ -65,7 +64,13 @@
   }
 }</component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx" />
+      <recent name="$PROJECT_DIR$/src/main/resources" />
+    </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
+      <recent name="dev.rhyme.pacmanjavafx.elements" />
+      <recent name="dev.rhyme.pacmanjavafx.state" />
       <recent name="dev.rhyme.pacmanjavafx.ai" />
       <recent name="dev.rhyme.pacmanjavafx" />
     </key>
@@ -186,7 +191,23 @@
       <option name="project" value="LOCAL" />
       <updated>1688490022326</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Improve package naming">
+      <option name="closed" value="true" />
+      <created>1688556339566</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1688556339566</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Add image resources">
+      <option name="closed" value="true" />
+      <created>1688564490085</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1688564490085</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -207,7 +228,9 @@
     <MESSAGE value="Implement eating food" />
     <MESSAGE value="Improve polymorphism" />
     <MESSAGE value="Improve resizing separation" />
-    <option name="LAST_COMMIT_MESSAGE" value="Improve resizing separation" />
+    <MESSAGE value="Improve package naming" />
+    <MESSAGE value="Add image resources" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add image resources" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -216,13 +239,18 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-function">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Pacman.kt</url>
-          <line>16</line>
-          <properties class="dev.rhyme.pacmanjavafx.Pacman" method="update">
+          <url>file://$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Pacman.kt</url>
+          <line>18</line>
+          <properties class="dev.rhyme.pacmanjavafx.elements.Pacman">
             <option name="EMULATED" value="true" />
             <option name="WATCH_EXIT" value="false" />
           </properties>
           <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/org/openjfx/javafx-graphics/17.0.6/javafx-graphics-17.0.6-sources.jar!/javafx/scene/image/Image.java</url>
+          <line>1108</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

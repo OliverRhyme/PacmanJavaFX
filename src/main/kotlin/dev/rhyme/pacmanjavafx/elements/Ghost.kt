@@ -5,7 +5,9 @@ import dev.rhyme.pacmanjavafx.Position
 import dev.rhyme.pacmanjavafx.ai.RandomTargetDirectionProvider
 import dev.rhyme.pacmanjavafx.ai.TargetDirectionProvider
 import dev.rhyme.pacmanjavafx.state.GameContext
+import dev.rhyme.pacmanjavafx.utils.resource
 import javafx.scene.canvas.GraphicsContext
+import javafx.scene.image.Image
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.concurrent.atomic.AtomicBoolean
@@ -19,6 +21,9 @@ class Ghost(
 
     override val targetDirectionProvider: TargetDirectionProvider =
         RandomTargetDirectionProvider(context.gameLoopTicker)
+
+    private val ghostImage = Image(resource("ghost.png"))
+    private val scaredGhostImage = Image(resource("scared_ghost.gif"))
 
     private val gameStarted = AtomicBoolean(false)
 
@@ -35,14 +40,11 @@ class Ghost(
         }
     }
 
-    override fun GraphicsContext.draw() {
-        fill = javafx.scene.paint.Color.RED
-        val (x, y) = position
-        fillOval(
-            /* x = */ x,
-            /* y = */ y,
-            /* w = */ tileSize,
-            /* h = */ tileSize
-        )
+    override fun GraphicsContext.draw(x: Double, y: Double) {
+        if (context.state.powerUpEatenTime != null) {
+            drawImage(scaredGhostImage, x, y, tileSize, tileSize)
+        } else {
+            drawImage(ghostImage, x, y, tileSize, tileSize)
+        }
     }
 }
