@@ -1,7 +1,7 @@
 package dev.rhyme.pacmanjavafx.ai
 
-import dev.rhyme.pacmanjavafx.Direction
-import dev.rhyme.pacmanjavafx.GameContext
+import dev.rhyme.pacmanjavafx.elements.Direction
+import dev.rhyme.pacmanjavafx.state.GameContext
 import javafx.scene.input.KeyCode
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.filterNotNull

@@ -1,7 +1,10 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.elements
 
+import dev.rhyme.pacmanjavafx.GameMap
+import dev.rhyme.pacmanjavafx.Position
 import dev.rhyme.pacmanjavafx.ai.RandomTargetDirectionProvider
 import dev.rhyme.pacmanjavafx.ai.TargetDirectionProvider
+import dev.rhyme.pacmanjavafx.state.GameContext
 import javafx.scene.canvas.GraphicsContext
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch

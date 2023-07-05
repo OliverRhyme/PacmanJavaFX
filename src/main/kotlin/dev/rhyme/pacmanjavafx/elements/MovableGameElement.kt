@@ -1,8 +1,11 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.elements
 
-import dev.rhyme.pacmanjavafx.Direction.Companion.sameAxisWith
-import dev.rhyme.pacmanjavafx.Movable.Companion.inGrid
+import dev.rhyme.pacmanjavafx.GameMap
+import dev.rhyme.pacmanjavafx.Position
 import dev.rhyme.pacmanjavafx.ai.TargetDirectionProvider
+import dev.rhyme.pacmanjavafx.elements.Direction.Companion.sameAxisWith
+import dev.rhyme.pacmanjavafx.elements.Movable.Companion.inGrid
+import dev.rhyme.pacmanjavafx.state.GameContext
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 

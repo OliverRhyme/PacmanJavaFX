@@ -1,8 +1,10 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.elements
+
+import dev.rhyme.pacmanjavafx.state.GameContext
 
 abstract class GameElement(
     protected val context: GameContext
-): Drawable {
+) : Drawable {
 
     open fun tick() {
         update()

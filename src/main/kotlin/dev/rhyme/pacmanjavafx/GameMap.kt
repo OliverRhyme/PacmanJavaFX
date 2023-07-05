@@ -1,6 +1,10 @@
 package dev.rhyme.pacmanjavafx
 
-import dev.rhyme.pacmanjavafx.Movable.Companion.inGrid
+import dev.rhyme.pacmanjavafx.elements.Direction
+import dev.rhyme.pacmanjavafx.elements.GameElement
+import dev.rhyme.pacmanjavafx.elements.Movable
+import dev.rhyme.pacmanjavafx.elements.Movable.Companion.inGrid
+import dev.rhyme.pacmanjavafx.state.GameContext
 import javafx.scene.canvas.GraphicsContext
 
 class GameMap(
@@ -10,6 +14,7 @@ class GameMap(
     private val tileSize = context.tileSize
 
     companion object {
+        private const val POWER_FOOD = 9
         private const val EMPTY = 8
         private const val GHOST = 4
         private const val PACMAN = 2
@@ -18,23 +23,25 @@ class GameMap(
     }
 
     // Create map outline, just an empty square, with empty path between
+    // 9 is power food
+    // 8 is empty
     // 4 is ghost
     // 2 is pacman
     // 1 is a wall
-    // 0 is a path
+    // 0 is a food
     private val map = arrayOf(
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
         intArrayOf(1, 2, 0, 0, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
@@ -53,6 +60,7 @@ class GameMap(
                     WALL -> drawWall(x, y)
                     FOOD -> drawFood(x, y)
                     EMPTY -> drawEmpty(x, y)
+                    POWER_FOOD -> drawPowerFood(x, y)
                 }
 
                 // draw grid
@@ -124,10 +132,9 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawFood(x: Int, y: Int) {
-
-        val scale = 0.5
+        val scale = 0.4
         val offset = tileSize * (1 - scale) / 2
-        // draw circle 80% of tile size and color yellow
+        // draw circle 20% of tile size and color yellow
         fill = javafx.scene.paint.Color.YELLOW
         fillOval(
             x * tileSize + offset,
@@ -147,15 +154,39 @@ class GameMap(
         )
     }
 
-    fun tryEatFood(position: Position) {
+    private fun GraphicsContext.drawPowerFood(x: Int, y: Int) {
+        val scale = 0.7
+        val offset = tileSize * (1 - scale) / 2
+        // draw circle 70% of tile size and color yellow
+        fill = javafx.scene.paint.Color.BROWN
+        fillOval(
+            x * tileSize + offset,
+            y * tileSize + offset,
+            tileSize * scale,
+            tileSize * scale
+        )
+    }
+
+    private fun tryEat(position: Position, target: Int): Boolean {
         if (!position.inGrid(tileSize)) {
-            return
+            return false
         }
 
         val (x, y) = position.getMapCell()
-        if (map[y][x] == FOOD) {
+        if (map[y][x] == target) {
             map[y][x] = EMPTY
+            return true
         }
+
+        return false
+    }
+
+    fun tryEatFood(position: Position): Boolean {
+        return tryEat(position, FOOD)
+    }
+
+    fun tryEatPowerFood(position: Position): Boolean {
+        return tryEat(position, POWER_FOOD)
     }
 
     private fun Position.getMapCell(): Pair<Int, Int> {

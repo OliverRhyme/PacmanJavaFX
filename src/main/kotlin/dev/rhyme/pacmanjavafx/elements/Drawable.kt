@@ -1,4 +1,4 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.elements
 
 import javafx.scene.canvas.GraphicsContext
 

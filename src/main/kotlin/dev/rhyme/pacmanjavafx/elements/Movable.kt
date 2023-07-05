@@ -1,4 +1,6 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.elements
+
+import dev.rhyme.pacmanjavafx.Position
 
 interface Movable {
     val position: Position

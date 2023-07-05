@@ -1,4 +1,4 @@
-package dev.rhyme.pacmanjavafx
+package dev.rhyme.pacmanjavafx.state
 
 import javafx.scene.canvas.GraphicsContext
 import javafx.scene.input.KeyEvent

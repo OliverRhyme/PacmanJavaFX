@@ -1,6 +1,6 @@
 package dev.rhyme.pacmanjavafx.ai
 
-import dev.rhyme.pacmanjavafx.Direction
+import dev.rhyme.pacmanjavafx.elements.Direction
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.transform
 

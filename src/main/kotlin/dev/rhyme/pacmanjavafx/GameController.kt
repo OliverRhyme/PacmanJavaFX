@@ -1,5 +1,6 @@
 package dev.rhyme.pacmanjavafx
 
+import dev.rhyme.pacmanjavafx.state.GameContext
 import dev.rhyme.pacmanjavafx.utils.keyPressFlow
 import javafx.fxml.FXML
 import javafx.scene.canvas.Canvas
