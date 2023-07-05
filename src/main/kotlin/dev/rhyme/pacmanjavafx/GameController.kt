@@ -37,7 +37,7 @@ class GameController {
                     delay(1000 / 60)
                 }
             }.shareIn(scope, SharingStarted.Lazily, 1),
-            state = GameState()
+            state = GameState(scope)
         )
 
         val game = Game(gameContext)

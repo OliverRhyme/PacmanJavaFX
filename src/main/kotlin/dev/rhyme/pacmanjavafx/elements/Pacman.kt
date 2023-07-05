@@ -8,6 +8,7 @@ import dev.rhyme.pacmanjavafx.state.GameContext
 import dev.rhyme.pacmanjavafx.utils.resource
 import javafx.scene.canvas.GraphicsContext
 import javafx.scene.image.Image
+import javafx.scene.paint.Color
 
 class Pacman(
     override var position: Position,
@@ -24,23 +25,26 @@ class Pacman(
     private val pacmanImage = Image(resource("pacman.gif"))
 
     override fun update() {
-        super.update()
+        if (!state.isGameOver) {
+            super.update()
+        }
         tryEat()
     }
 
     private fun tryEat() {
         when (gameMap.tryEat(position)) {
-            FoodType.NORMAL -> state.score++
-            FoodType.POWER_UP -> {
-                state.score += 10
-                state.powerUpEatenTime = System.currentTimeMillis()
-            }
-
+            FoodType.NORMAL -> state.eatFood()
+            FoodType.POWER_UP -> state.eatPowerUp()
             else -> Unit // do nothing
         }
     }
 
     override fun GraphicsContext.draw(x: Double, y: Double) {
-        drawImage(pacmanImage, x, y, tileSize, tileSize)
+        if (!state.isGameOver) {
+            drawImage(pacmanImage, x, y, tileSize, tileSize)
+        } else {
+            fill = Color.YELLOW
+            fillOval(x, y, tileSize, tileSize)
+        }
     }
 }

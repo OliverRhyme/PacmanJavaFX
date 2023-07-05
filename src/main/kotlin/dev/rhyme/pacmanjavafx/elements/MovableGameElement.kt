@@ -78,4 +78,18 @@ abstract class MovableGameElement(
             null -> position
         }
     }
+
+    override fun collidesWith(movable: Movable): Boolean {
+        val (x, y) = position
+        val (otherX, otherY) = movable.position
+
+        // Modified https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection#axis-aligned_bounding_box
+        // We set to half size so that we can have a little bit of leeway
+        val halfSize = tileSize / 2
+
+        val xCollides = x < otherX + halfSize && x + halfSize > otherX
+        val yCollides = y < otherY + halfSize && y + halfSize > otherY
+
+        return xCollides && yCollides
+    }
 }

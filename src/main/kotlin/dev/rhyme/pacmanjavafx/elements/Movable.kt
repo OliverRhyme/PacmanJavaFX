@@ -17,4 +17,6 @@ interface Movable {
             return x % tileSize == 0.0 && y % tileSize == 0.0
         }
     }
+
+    fun collidesWith(movable: Movable): Boolean
 }

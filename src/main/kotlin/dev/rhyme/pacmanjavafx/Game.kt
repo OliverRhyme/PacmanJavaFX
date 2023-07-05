@@ -3,7 +3,9 @@ package dev.rhyme.pacmanjavafx
 import dev.rhyme.pacmanjavafx.elements.Ghost
 import dev.rhyme.pacmanjavafx.elements.Pacman
 import dev.rhyme.pacmanjavafx.state.GameContext
+import dev.rhyme.pacmanjavafx.state.GameState
 import kotlinx.coroutines.flow.collectLatest
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 
 class Game(
@@ -14,6 +16,14 @@ class Game(
         const val AFRAID_TIME = 5000L
         const val AFRAID_ALMOST_DONE_TIME = 3000L
     }
+
+    init {
+        context.coroutineScope.launch {
+            context.keyEventFlow.first()
+            context.state.gameStarted = true
+        }
+    }
+
 
     private val gameMap = GameMap(context = context)
 
@@ -46,15 +56,20 @@ class Game(
     }
 
     private fun checkState() {
-        val currentTime = System.currentTimeMillis()
-        val eatenTime = context.state.powerUpEatenTime
-
-        if (eatenTime != null) {
-            val timePassed = currentTime - eatenTime
-            if (timePassed > AFRAID_TIME) {
-                context.state.powerUpEatenTime = null
+        if (!context.state.isGameOver) {
+            val gameOver = isGameOver()
+            if (gameOver) {
+                context.state.gameOver()
             }
         }
+    }
+
+    fun isGameOver(): Boolean {
+        if (context.state.poweredUpState != GameState.PowerUpState.NORMAL) {
+            return false
+        }
+
+        return ghosts.any { it.collidesWith(pacman) }
     }
 
     fun resizeCanvas() {
