@@ -25,7 +25,7 @@ class Ghost(
 
     override fun update() {
         val state = context.state
-        if (state.gameStarted && !state.isGameOver) {
+        if (state.gameStarted && !state.isGameOver && !state.isGameWon) {
             super.update()
         }
     }

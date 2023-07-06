@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement end screens and score board">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/power_food.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
-    </list>
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Fix ghost still running after game end" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -62,7 +58,7 @@
     &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.5367816&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propDebugger&quot;
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
 }</component>
   <component name="RecentsManager">
@@ -260,7 +256,23 @@
       <option name="project" value="LOCAL" />
       <updated>1688611838260</updated>
     </task>
-    <option name="localTasksCounter" value="17" />
+    <task id="LOCAL-00017" summary="Implement power food animation">
+      <option name="closed" value="true" />
+      <created>1688612678898</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1688612678898</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Fix ghost still running after game end">
+      <option name="closed" value="true" />
+      <created>1688629239610</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1688629239610</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -287,7 +299,9 @@
     <MESSAGE value="Implement eating ghost" />
     <MESSAGE value="Implement audio" />
     <MESSAGE value="Implement end screens and score board" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement end screens and score board" />
+    <MESSAGE value="Implement power food animation" />
+    <MESSAGE value="Fix ghost still running after game end" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix ghost still running after game end" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

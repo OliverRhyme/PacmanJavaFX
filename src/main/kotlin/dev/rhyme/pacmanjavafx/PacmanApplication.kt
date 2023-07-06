@@ -8,7 +8,7 @@ import javafx.stage.Stage
 class PacmanApplication : Application() {
     override fun start(stage: Stage) {
         val fxmlLoader = FXMLLoader(PacmanApplication::class.java.getResource("pacman-view.fxml"))
-        val scene = Scene(fxmlLoader.load(), 480.0, 520.0)
+        val scene = Scene(fxmlLoader.load(), 480.0, 530.0)
         stage.title = "Pacman"
         stage.scene = scene
         stage.show()
