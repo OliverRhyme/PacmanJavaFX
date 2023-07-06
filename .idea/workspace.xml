@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement audio">
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/EndScreen.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/ScoreBoard.kt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/font/SuperMario256.ttf" afterDir="false" />
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement end screens and score board">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/power_food.gif" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/PacmanApplication.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/PacmanApplication.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/utils/ResourceUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/utils/ResourceUtils.kt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,11 +67,11 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images" />
       <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/font" />
       <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx" />
       <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
-      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="dev.rhyme.pacmanjavafx.elements" />
@@ -258,7 +252,15 @@
       <option name="project" value="LOCAL" />
       <updated>1688609222762</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Implement end screens and score board">
+      <option name="closed" value="true" />
+      <created>1688611838260</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1688611838260</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -284,7 +286,8 @@
     <MESSAGE value="Implement collision detection" />
     <MESSAGE value="Implement eating ghost" />
     <MESSAGE value="Implement audio" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement audio" />
+    <MESSAGE value="Implement end screens and score board" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement end screens and score board" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />

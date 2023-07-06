@@ -11,6 +11,8 @@ class GameMap(
     context: GameContext
 ) : GameElement(context) {
 
+    private val powerFoodImage = Image(imageResource("power_food.gif"))
+
     private val tileSize = context.tileSize
 
     private val wallImage = Image(imageResource("wall.png"))
@@ -33,18 +35,18 @@ class GameMap(
     // 0 is a food
     private val map = arrayOf(
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
-        intArrayOf(1, 2, 0, 9, 0, 0, 0, 4, 4, 4, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
+        intArrayOf(1, 2, 0, 9, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1),
-        intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 9, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 1),
+        intArrayOf(1, 1, 1, 0, 9, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 9, 1),
+        intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 1, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 1),
+        intArrayOf(1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 9, 1, 0, 0, 1, 0, 1, 1, 1, 1, 1, 0, 1),
+        intArrayOf(1, 0, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
@@ -146,7 +148,7 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawFood(x: Int, y: Int) {
-        val scale = 0.4
+        val scale = 0.3
         val offset = tileSize * (1 - scale) / 2
         // draw circle 20% of tile size and color yellow
         fill = javafx.scene.paint.Color.YELLOW
@@ -169,15 +171,12 @@ class GameMap(
     }
 
     private fun GraphicsContext.drawPowerFood(x: Int, y: Int) {
-        val scale = 0.7
-        val offset = tileSize * (1 - scale) / 2
-        // draw circle 70% of tile size and color yellow
-        fill = javafx.scene.paint.Color.BROWN
-        fillOval(
-            x * tileSize + offset,
-            y * tileSize + offset,
-            tileSize * scale,
-            tileSize * scale
+        drawImage(
+            powerFoodImage,
+            x * tileSize,
+            y * tileSize,
+            tileSize,
+            tileSize
         )
     }
 
