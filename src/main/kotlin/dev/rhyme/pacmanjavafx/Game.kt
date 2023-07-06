@@ -12,10 +12,13 @@ class Game(
     private val context: GameContext,
 ) {
 
+    private val gameState: GameState
+        get() = context.state
+
     init {
         context.coroutineScope.launch {
             context.keyEventFlow.first()
-            context.state.gameStarted = true
+            gameState.gameStarted = true
         }
     }
 
@@ -52,6 +55,15 @@ class Game(
     }
 
     private fun checkState() {
+        if (gameState.isGameOver || gameState.isGameWon) {
+            return
+        }
+
+        checkCollisions()
+        checkFoods()
+    }
+
+    private fun checkCollisions() {
         val collidedWith = checkCollidedWith()
 
         if (collidedWith.isEmpty()) {
@@ -59,13 +71,18 @@ class Game(
         }
 
         // if we are powered up, we can eat the ghosts
-        if (context.state.poweredUpState != GameState.PowerUpState.NORMAL) {
+        if (gameState.poweredUpState != GameState.PowerUpState.NORMAL) {
             ghosts.removeAll(collidedWith)
         } else {
             if (collidedWith.isNotEmpty()) {
-                context.state.gameOver()
-                // TODO: show game over screen
+                gameState.gameOver()
             }
+        }
+    }
+
+    private fun checkFoods() {
+        if (gameMap.getRemainingFood() == 0) {
+            gameState.gameWon()
         }
     }
 

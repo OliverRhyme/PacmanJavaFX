@@ -1,12 +1,9 @@
 package dev.rhyme.pacmanjavafx
 
-import dev.rhyme.pacmanjavafx.elements.Direction
-import dev.rhyme.pacmanjavafx.elements.FoodType
-import dev.rhyme.pacmanjavafx.elements.GameElement
-import dev.rhyme.pacmanjavafx.elements.Movable
+import dev.rhyme.pacmanjavafx.elements.*
 import dev.rhyme.pacmanjavafx.elements.Movable.Companion.inGrid
 import dev.rhyme.pacmanjavafx.state.GameContext
-import dev.rhyme.pacmanjavafx.utils.resource
+import dev.rhyme.pacmanjavafx.utils.imageResource
 import javafx.scene.canvas.GraphicsContext
 import javafx.scene.image.Image
 
@@ -16,7 +13,7 @@ class GameMap(
 
     private val tileSize = context.tileSize
 
-    private val wallImage = Image(resource("wall.png"))
+    private val wallImage = Image(imageResource("wall.png"))
 
     companion object {
         private const val POWER_FOOD = 9
@@ -43,12 +40,12 @@ class GameMap(
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
-        intArrayOf(1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
+        intArrayOf(1, 0, 9, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1),
+        intArrayOf(1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1),
         intArrayOf(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1)
     )
 
@@ -57,6 +54,18 @@ class GameMap(
     }
 
     override fun update() = Unit // nothing to update
+
+    fun getRemainingFood(): Int {
+        var foodCount = 0
+        for (y in map.indices) {
+            for (x in map[y].indices) {
+                if (map[y][x] == FOOD || map[y][x] == POWER_FOOD) {
+                    foodCount++
+                }
+            }
+        }
+        return foodCount
+    }
 
     override fun GraphicsContext.draw() {
         for (y in map.indices) {

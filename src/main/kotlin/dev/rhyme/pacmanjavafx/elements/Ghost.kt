@@ -1,12 +1,11 @@
 package dev.rhyme.pacmanjavafx.elements
 
 import dev.rhyme.pacmanjavafx.GameMap
-import dev.rhyme.pacmanjavafx.Position
 import dev.rhyme.pacmanjavafx.ai.RandomTargetDirectionProvider
 import dev.rhyme.pacmanjavafx.ai.TargetDirectionProvider
 import dev.rhyme.pacmanjavafx.state.GameContext
 import dev.rhyme.pacmanjavafx.state.GameState
-import dev.rhyme.pacmanjavafx.utils.resource
+import dev.rhyme.pacmanjavafx.utils.imageResource
 import javafx.scene.canvas.GraphicsContext
 import javafx.scene.image.Image
 
@@ -20,9 +19,9 @@ class Ghost(
     override val targetDirectionProvider: TargetDirectionProvider =
         RandomTargetDirectionProvider(context.gameLoopTicker)
 
-    private val ghostImage = Image(resource("ghost.png"))
-    private val scaredAlmostDoneGhostImage = Image(resource("scared_ghost_almost_done.gif"))
-    private val scaredGhostImage = Image(resource("scared_ghost.png"))
+    private val ghostImage = Image(imageResource("ghost.png"))
+    private val scaredAlmostDoneGhostImage = Image(imageResource("scared_ghost_almost_done.gif"))
+    private val scaredGhostImage = Image(imageResource("scared_ghost.png"))
 
     override fun update() {
         val state = context.state

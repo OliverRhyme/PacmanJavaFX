@@ -14,7 +14,7 @@ class GameController {
 
     companion object {
         const val tileSize = 32.0
-        const val velocity = 1.0
+        const val velocity = 2.0
     }
 
     private val scope = MainScope()

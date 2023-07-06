@@ -1,5 +1,6 @@
 package dev.rhyme.pacmanjavafx.state
 
+import dev.rhyme.pacmanjavafx.AudioManager
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
@@ -7,7 +8,10 @@ import kotlinx.coroutines.launch
 
 class GameState(private val scope: CoroutineScope) {
 
+    private val audioManager = AudioManager(scope)
+
     companion object {
+        private const val GHOST_SCORE = 100
         private const val POWER_UP_SCORE = 50
         private const val AFRAID_TIME = 5000L
         private const val AFRAID_ENDING_TIME = 3000L
@@ -30,9 +34,19 @@ class GameState(private val scope: CoroutineScope) {
 
     var gameStarted: Boolean = false
 
+    var isGameWon: Boolean = false
+        private set
+
+    fun gameWon() {
+        reset()
+        isGameWon = true
+        audioManager.playGameWon()
+    }
+
     fun gameOver() {
         reset()
         isGameOver = true
+        audioManager.playGameOver()
     }
 
     fun eatPowerUp() {
@@ -45,10 +59,17 @@ class GameState(private val scope: CoroutineScope) {
             poweredUpState = PowerUpState.NORMAL
         }
         score += POWER_UP_SCORE
+        audioManager.playPowerFood(AFRAID_TIME)
     }
 
     fun eatFood() {
         score++
+        audioManager.playWaka()
+    }
+
+    fun eatGhost() {
+        score += POWER_UP_SCORE
+        audioManager.playEatGhost()
     }
 
     fun reset() {

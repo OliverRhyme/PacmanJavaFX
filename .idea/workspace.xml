@@ -4,10 +4,31 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement collision detection">
+    <list default="true" id="e9483394-2ecf-45e5-be1a-49f653f7ebe5" name="Changes" comment="Implement eating ghost">
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/AudioManager.kt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio/eatGhost.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio/gameOver.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio/gameWon.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio/powerFood.wav" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio/waka.wav" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameController.kt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/GameMap.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Position.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Position.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Ghost.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Ghost.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Movable.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Movable.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/MovableGameElement.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/MovableGameElement.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Pacman.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/elements/Pacman.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/state/GameState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/state/GameState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/utils/ResourceUtils.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/utils/ResourceUtils.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/kotlin/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/ghost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/pacman.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/pacman.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/scared_ghost.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/scared_ghost.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/scared_ghost_almost_done.gif" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/scared_ghost_almost_done.gif" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/wall.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images/wall.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,9 +40,9 @@
       <list>
         <option value="Kotlin Data Class" />
         <option value="Kotlin Interface" />
-        <option value="Kotlin Class" />
         <option value="Kotlin Enum" />
         <option value="Kotlin File" />
+        <option value="Kotlin Class" />
       </list>
     </option>
   </component>
@@ -67,8 +88,10 @@
 }</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx" />
+      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/audio" />
       <recent name="$PROJECT_DIR$/src/main/resources" />
+      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx/images" />
+      <recent name="$PROJECT_DIR$/src/main/resources/dev/rhyme/pacmanjavafx" />
     </key>
     <key name="MoveKotlinTopLevelDeclarationsDialog.RECENTS_KEY">
       <recent name="dev.rhyme.pacmanjavafx.elements" />
@@ -225,7 +248,23 @@
       <option name="project" value="LOCAL" />
       <updated>1688571380052</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Implement eating ghost">
+      <option name="closed" value="true" />
+      <created>1688572162700</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1688572162700</updated>
+    </task>
+    <task id="LOCAL-00014" summary="Implement eating ghost">
+      <option name="closed" value="true" />
+      <created>1688572674729</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1688572674729</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -249,7 +288,8 @@
     <MESSAGE value="Improve package naming" />
     <MESSAGE value="Add image resources" />
     <MESSAGE value="Implement collision detection" />
-    <option name="LAST_COMMIT_MESSAGE" value="Implement collision detection" />
+    <MESSAGE value="Implement eating ghost" />
+    <option name="LAST_COMMIT_MESSAGE" value="Implement eating ghost" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="true" />
     <option name="REARRANGE_BEFORE_PROJECT_COMMIT" value="true" />
@@ -259,16 +299,8 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="kotlin-line">
           <url>file://$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt</url>
-          <line>61</line>
+          <line>74</line>
           <option name="timeStamp" value="4" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="kotlin-line">
-          <url>file://$PROJECT_DIR$/src/main/kotlin/dev/rhyme/pacmanjavafx/Game.kt</url>
-          <line>71</line>
-          <properties>
-            <option name="lambda-ordinal" value="-1" />
-          </properties>
-          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
