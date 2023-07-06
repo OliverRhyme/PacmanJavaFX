@@ -77,14 +77,14 @@ class GameMap(
                     POWER_FOOD -> drawPowerFood(x, y)
                 }
 
-                // draw grid
-                stroke = javafx.scene.paint.Color.GRAY
-                strokeRect(
-                    x * tileSize,
-                    y * tileSize,
-                    tileSize,
-                    tileSize
-                )
+//                // draw grid
+//                stroke = javafx.scene.paint.Color.GRAY
+//                strokeRect(
+//                    x * tileSize,
+//                    y * tileSize,
+//                    tileSize,
+//                    tileSize
+//                )
             }
         }
     }

@@ -38,13 +38,13 @@ class GameState(private val scope: CoroutineScope) {
         private set
 
     fun gameWon() {
-        reset()
+//        reset()
         isGameWon = true
         audioManager.playGameWon()
     }
 
     fun gameOver() {
-        reset()
+//        reset()
         isGameOver = true
         audioManager.playGameOver()
     }

@@ -1,7 +1,9 @@
 package dev.rhyme.pacmanjavafx
 
+import dev.rhyme.pacmanjavafx.elements.EndScreen
 import dev.rhyme.pacmanjavafx.elements.Ghost
 import dev.rhyme.pacmanjavafx.elements.Pacman
+import dev.rhyme.pacmanjavafx.elements.ScoreBoard
 import dev.rhyme.pacmanjavafx.state.GameContext
 import dev.rhyme.pacmanjavafx.state.GameState
 import kotlinx.coroutines.flow.collectLatest
@@ -22,7 +24,6 @@ class Game(
         }
     }
 
-
     private val gameMap = GameMap(context = context)
 
     private val pacman = Pacman(
@@ -39,11 +40,21 @@ class Game(
         )
     }.toMutableSet()
 
+    private val endScreen = EndScreen(
+        context = context
+    )
+
+    private val scoreBoard = ScoreBoard(
+        context = context
+    )
+
     private val gameElements
         get() = buildList {
             add(gameMap)
+            add(scoreBoard)
             addAll(ghosts)
             add(pacman)
+            add(endScreen)
         }
 
     private val drawingContext = context.drawingContext
@@ -73,6 +84,9 @@ class Game(
         // if we are powered up, we can eat the ghosts
         if (gameState.poweredUpState != GameState.PowerUpState.NORMAL) {
             ghosts.removeAll(collidedWith)
+            repeat(collidedWith.size) {
+                gameState.eatGhost()
+            }
         } else {
             if (collidedWith.isNotEmpty()) {
                 gameState.gameOver()
@@ -93,7 +107,7 @@ class Game(
     fun resizeCanvas() {
         val (gridX, gridY) = gameMap.getMapCells()
         drawingContext.canvas.width = gridX * context.tileSize
-        drawingContext.canvas.height = gridY * context.tileSize
+        drawingContext.canvas.height = gridY * context.tileSize + 50
     }
 
     fun start() {
